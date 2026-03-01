@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <h2>📊 Analizar País</h2>
+
+    <form action="/analysis-result" method="get">
+        <input type="text" name="country" placeholder="Ingrese el nombre del país" required>
+        <button type="submit">Analizar</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="card error-card">
+    <h3 style="color:red;">{{ error }}</h3>
+</div>
+{% endif %}
+
+{% if country_data %}
+<div class="card country-card">
+
+    <div class="country-layout">
+
+        <!-- LADO IZQUIERDO (INFORMACIÓN) -->
+        <div class="country-details">
+
+            <h2>{{ country_data.name }}</h2>
+
+            <div class="info-grid">
+                <div>
+                    <p><strong>Población</strong></p>
+                    <span>{{ country_data.population }}</span>
+                </div>
+
+                <div>
+                    <p><strong>Región</strong></p>
+                    <span>{{ country_data.region }}</span>
+                </div>
+
+                <div>
+                    <p><strong>Moneda</strong></p>
+                    <span>{{ country_data.currency }}</span>
+                </div>
+
+                <div>
+                    <p><strong>Puntaje de Riesgo</strong></p>
+                    <span>{{ country_data.score }}</span>
+                </div>
+
+                <div>
+                    <p><strong>Nivel de Riesgo</strong></p>
+                    <span class="badge {{ country_data.badge | lower }}">
+                        {{ country_data.level }}
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- LADO DERECHO (BANDERA + MAPA) -->
+        <div class="country-visual">
+
+            <img src="{{ country_data.flag }}" class="flag-img" alt="Bandera">
+
+            <img src="{{ country_data.map }}" class="map-img" alt="Mapa">
+
+        </div>
+
+    </div>
+
+</div>
+{% endif %}
+
+{% endblock %}

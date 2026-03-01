@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <h2>🌍 Top 10 Países por Población</h2>
+
+    <table class="ranking-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>País</th>
+                <th>Población</th>
+                <th>Índice de Riesgo</th>
+                <th>Nivel de Riesgo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in ranking %}
+            <tr>
+                <td>{{ loop.index }}</td>
+
+                <td class="country-cell">
+                    <img src="{{ c.flag }}" class="flag-small" alt="">
+                    {{ c.name }}
+                </td>
+
+                <td>{{ "{:,}".format(c.population) }}</td>
+                <td>{{ c.score }}</td>
+
+                <td>
+                    <span class="badge {{ c.badge | lower }}">
+                        {{ c.level }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

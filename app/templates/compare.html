@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card">
+    <h2>🌎 Comparar Países</h2>
+
+    <!-- FORMULARIO -->
+    <form action="/compare" method="get">
+        <input type="text" name="country1" placeholder="Primer país" required>
+        <input type="text" name="country2" placeholder="Segundo país" required>
+        <button type="submit">Comparar</button>
+    </form>
+</div>
+
+{% if error %}
+<div class="card">
+    <p style="color:red">{{ error }}</p>
+</div>
+{% endif %}
+
+{% if result %}
+<div class="card">
+
+    <h2>📊 Resultado de la Comparación</h2>
+
+    <div class="compare-layout">
+
+        <!-- País 1 -->
+        <div class="compare-card">
+            <div class="compare-header">
+                <img src="{{ result.country1.flag }}" class="flag-small" alt="">
+                <h3>{{ result.country1.name }}</h3>
+            </div>
+
+            <p><strong>Puntaje de Riesgo:</strong> {{ result.country1.score }}</p>
+            <p>
+                <strong>Nivel de Riesgo:</strong>
+                <span class="badge {{ result.country1.badge | lower }}">
+                    {{ result.country1.level }}
+                </span>
+            </p>
+        </div>
+
+        <!-- País 2 -->
+        <div class="compare-card">
+            <div class="compare-header">
+                <img src="{{ result.country2.flag }}" class="flag-small" alt="">
+                <h3>{{ result.country2.name }}</h3>
+            </div>
+
+            <p><strong>Puntaje de Riesgo:</strong> {{ result.country2.score }}</p>
+            <p>
+                <strong>Nivel de Riesgo:</strong>
+                <span class="badge {{ result.country2.badge | lower }}">
+                    {{ result.country2.level }}
+                </span>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="winner">
+        🏆 País con Menor Nivel de Riesgo:
+        <strong>{{ result.winner }}</strong>
+    </div>
+
+</div>
+{% endif %}
+
+{% endblock %}

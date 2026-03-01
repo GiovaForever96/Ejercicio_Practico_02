@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Encabezado -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">
+            📊 Sistema de Análisis y Ranking
+        </h1>
+        <p class="lead text-muted">
+            Plataforma de análisis geoeconómico basada en datos internacionales
+        </p>
+        <hr class="w-50 mx-auto">
+    </div>
+
+    <!-- Sección de funcionalidades -->
+    <div class="row g-4 justify-content-center">
+
+        <!-- Ranking -->
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <h3 class="card-title mb-3">
+                        📊 Ranking Mundial
+                    </h3>
+                    <p class="card-text text-muted">
+                        Visualiza los países con mayor población del mundo
+                        utilizando datos obtenidos desde una API REST pública.
+                    </p>
+                    <a href="/ranking" class="btn btn-primary btn-lg mt-3">
+                        Ver Ranking
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Análisis -->
+        <div class="col-md-5">
+            <div class="card shadow-lg border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <h3 class="card-title mb-3">
+                        📈 Análisis Geoeconómico
+                    </h3>
+                    <p class="card-text text-muted">
+                        Explora indicadores comparativos y tendencias
+                        demográficas para obtener insights estratégicos.
+                    </p>
+                    <a href="/analysis-view" class="btn btn-success btn-lg mt-3">
+                        Ver Análisis
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Pie informativo -->
+    <div class="text-center mt-5">
+        <small class="text-muted">
+            Proyecto desarrollado con Flask + API REST + Bootstrap 5
+        </small>
+    </div>
+
+</div>
+
+{% endblock %}
